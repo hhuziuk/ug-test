@@ -7,10 +7,11 @@
     "build": "pnpm -r run build",
     "start": "pnpm -r run start:prod",
     "start:dev": "pnpm -r --parallel run start:dev",
-    "lint": "pnpm -r run lint",
-    "lint:fix": "pnpm -r run lint:fix"
+    "lint": "biome check ./client/src ./server/src",
+    "lint:fix": "biome format --write ./client/src ./server/src"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.1.3",
     "pnpm": "latest"
   }
 }

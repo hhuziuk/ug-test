@@ -86,9 +86,9 @@ export class ProjectRepository implements IProjectRepository {
   async findAllByUserId(userId: string): Promise<Project[]> {
     const projects = await this.repo.find({
       where: { user: { id: Number(userId) } },
-      order: { createdAt: 'DESC' }
+      order: { createdAt: "DESC" },
     });
-    return projects.map(p => this.toDomain(p));
+    return projects.map((p) => this.toDomain(p));
   }
 
   async delete(id: string): Promise<void> {

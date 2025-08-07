@@ -5,17 +5,17 @@ import { RepoPath } from "../../../domain/value-objects/repo-path.vo";
 import { GitHubUrl } from "../../../domain/value-objects/github-url.vo";
 import { ProjectStats } from "../../../domain/value-objects/project-stats.vo";
 import { ProjectException } from "../../exceptions/project.exceptions";
-import {IProjectRepository} from "../../database/postgres/repositories/project.repository.interface";
-import {Inject, Logger} from "@nestjs/common";
+import { IProjectRepository } from "../../database/postgres/repositories/project.repository.interface";
+import { Inject, Logger } from "@nestjs/common";
 
 @Processor("github-projects")
 export class GitHubProcessor {
   private readonly logger = new Logger(GitHubProcessor.name);
 
   constructor(
-      private readonly githubService: GitHubService,
-      @Inject(IProjectRepository)
-      private readonly projectRepository: IProjectRepository,
+    private readonly githubService: GitHubService,
+    @Inject(IProjectRepository)
+    private readonly projectRepository: IProjectRepository,
   ) {}
 
   @Process("create-project")
@@ -36,14 +36,17 @@ export class GitHubProcessor {
 
       this.logger.log(`Successfully processed and saved project ${repoPath}`);
     } catch (err) {
-      this.logger.error(`Failed to process job ${job.id} for repo ${repoPath}. Error: ${err}`, err.stack);
+      this.logger.error(
+        `Failed to process job ${job.id} for repo ${repoPath}. Error: ${err}`,
+        err.stack,
+      );
 
       if (err instanceof ProjectException) {
         throw err;
       }
       throw new ProjectException(
-          `Error processing GitHub project job for ${repoPath}`,
-          err as Error,
+        `Error processing GitHub project job for ${repoPath}`,
+        err as Error,
       );
     }
   }

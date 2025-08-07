@@ -8,8 +8,8 @@ import { JwtRefreshGuard } from "../../../shared/guards/jwt-refresh.guard";
 import { TokensDto } from "../dto/tokens.dto";
 import { RegisterDto } from "../dto/register.dto";
 import { Tokens } from "../../domain/interfaces /tokens.interface";
-import {RefreshDto} from "../dto/refresh.dto";
-import {LoginDto} from "../dto/login.dto";
+import { RefreshDto } from "../dto/refresh.dto";
+import { LoginDto } from "../dto/login.dto";
 
 @ApiTags("Auth")
 @Controller("auth")

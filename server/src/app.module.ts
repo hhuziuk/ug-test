@@ -9,8 +9,8 @@ import { HealthModule } from "./health/health.module";
 import { validationSchema } from "./config/validation";
 import configuration from "./config/config";
 import { PostgresDataSourceOptions } from "./config/data-source";
-import {ProjectsModule} from "./projects/projects.module";
-import {BullModule} from "@nestjs/bull";
+import { ProjectsModule } from "./projects/projects.module";
+import { BullModule } from "@nestjs/bull";
 
 @Module({
   imports: [
@@ -50,8 +50,8 @@ import {BullModule} from "@nestjs/bull";
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         redis: {
-          host: configService.get<string>('REDIS_HOST'),
-          port: configService.get<number>('REDIS_PORT'),
+          host: configService.get<string>("REDIS_HOST"),
+          port: configService.get<number>("REDIS_PORT"),
         },
       }),
       inject: [ConfigService],
@@ -59,7 +59,7 @@ import {BullModule} from "@nestjs/bull";
 
     HealthModule,
     AuthModule,
-    ProjectsModule
+    ProjectsModule,
   ],
   providers: [
     {

@@ -6,7 +6,7 @@ import { AppModule } from "./app.module";
 import { setupSwagger } from "./shared/swagger/swagger";
 import { AppDataSource } from "./config/data-source";
 import logger, { setConsoleLogs, setFileLogs, setMetricsLogs } from "./shared/logger/logger";
-import {CredentialsInvalidFilter} from "./shared/filters/credentials-invalid.filter";
+import { CredentialsInvalidFilter } from "./shared/filters/credentials-invalid.filter";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

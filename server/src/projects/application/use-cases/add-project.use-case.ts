@@ -1,6 +1,6 @@
 import { InjectQueue } from "@nestjs/bull";
 import { Queue } from "bull";
-import {Injectable, Logger} from "@nestjs/common";
+import { Injectable, Logger } from "@nestjs/common";
 import { RepoPath } from "../../domain/value-objects/repo-path.vo";
 import { AddProjectDto } from "../dto/add-project.dto";
 
@@ -9,8 +9,8 @@ export class AddProjectUseCase {
   private readonly logger = new Logger(AddProjectUseCase.name);
 
   constructor(
-      @InjectQueue("github-projects")
-      private readonly githubQueue: Queue,
+    @InjectQueue("github-projects")
+    private readonly githubQueue: Queue,
   ) {}
 
   async execute(dto: AddProjectDto): Promise<void> {

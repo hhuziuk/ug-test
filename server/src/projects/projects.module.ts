@@ -8,10 +8,10 @@ import { GitHubService } from "./infrastructure/services/github/github.service";
 import { GitHubProcessor } from "./infrastructure/services/github/github.processor";
 import { AddProjectUseCase } from "./application/use-cases/add-project.use-case";
 import { ProjectsController } from "./presentation/controllers/projects.controller";
-import {GetProjectsUseCase} from "./application/use-cases/get-projects.use-case";
-import {IProjectRepository} from "./infrastructure/database/postgres/repositories/project.repository.interface";
-import {DeleteProjectUseCase} from "./application/use-cases/delete-project.use-case";
-import {UpdateProjectUseCase} from "./application/use-cases/update-project.use-case";
+import { GetProjectsUseCase } from "./application/use-cases/get-projects.use-case";
+import { IProjectRepository } from "./infrastructure/database/postgres/repositories/project.repository.interface";
+import { DeleteProjectUseCase } from "./application/use-cases/delete-project.use-case";
+import { UpdateProjectUseCase } from "./application/use-cases/update-project.use-case";
 
 @Module({
   imports: [

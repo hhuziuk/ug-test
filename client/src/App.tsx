@@ -1,4 +1,4 @@
-import React, {JSX} from "react";
+import React, { JSX } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, AuthContext } from "./contexts/AuthContext";
 import Login from "./pages/Login";
@@ -31,5 +31,4 @@ const RequireAuth = ({ children }: { children: JSX.Element }) => {
   const { token } = React.useContext(AuthContext);
   return token ? children : <Navigate to="/login" />;
 };
-
 export default App;

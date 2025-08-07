@@ -34,9 +34,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       localStorage.setItem("token", newAccessToken);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
-        alert(error.response.data.message || 'Login failed. Please check your credentials.');
+        alert(error.response.data.message || "Login failed. Please check your credentials.");
       } else {
-        alert('An unexpected error occurred during login.');
+        alert("An unexpected error occurred during login.");
       }
       throw error;
     }
@@ -52,9 +52,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       localStorage.setItem("token", newAccessToken);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
-        alert(error.response.data.message || 'Registration failed.');
+        alert(error.response.data.message || "Registration failed.");
       } else {
-        alert('An unexpected error occurred during registration.');
+        alert("An unexpected error occurred during registration.");
       }
       throw error;
     }
@@ -71,8 +71,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }
 
   return (
-      <AuthContext.Provider value={{ token, login, register, logout }}>
-        {children}
-      </AuthContext.Provider>
+    <AuthContext.Provider value={{ token, login, register, logout }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
