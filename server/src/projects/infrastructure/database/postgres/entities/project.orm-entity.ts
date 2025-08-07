@@ -6,11 +6,7 @@ export class ProjectOrmEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @ManyToOne(
-    () => UserOrmEntity,
-    (user) => user.projects,
-    { onDelete: "CASCADE" },
-  )
+  @ManyToOne(() => UserOrmEntity, (user) => user.projects, { onDelete: "CASCADE" })
   @JoinColumn({ name: "user_id" })
   user: UserOrmEntity;
 

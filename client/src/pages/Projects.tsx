@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useContext } from "react";
-import api from "../api";
-import { AuthContext } from "../contexts/AuthContext";
+import { useCallback, useContext, useEffect, useState } from "react";
 import ProjectRow from "../components/ProjectRow";
+import { AuthContext } from "../contexts/AuthContext";
+import api from "../api";
 
 interface Project {
   id: string;
@@ -20,14 +20,18 @@ export default function Projects() {
   const [newPath, setNewPath] = useState("");
   const { logout } = useContext(AuthContext);
 
-  const fetchProjects = async () => {
-    const res = await api.get("/projects");
-    setProjects(res.data);
-  };
+  const fetchProjects = useCallback(async () => {
+    try {
+      const res = await api.get("/projects");
+      setProjects(res.data);
+    } catch (error) {
+      console.error("Failed to fetch projects", error);
+    }
+  }, []);
 
   useEffect(() => {
     fetchProjects();
-  }, []);
+  }, [fetchProjects]);
 
   const add = async () => {
     const currentProjectCount = projects.length;
@@ -63,14 +67,18 @@ export default function Projects() {
   return (
     <div>
       <h2>Your Projects</h2>
-      <button onClick={logout}>Logout</button>
+      <button type="button" onClick={logout}>
+        Logout
+      </button>
       <div>
         <input
           value={newPath}
           onChange={(e) => setNewPath(e.target.value)}
           placeholder="owner/repo"
         />
-        <button onClick={add}>Add</button>
+        <button type="button" onClick={add}>
+          Add
+        </button>
       </div>
       <table>
         <thead>

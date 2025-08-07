@@ -25,9 +25,6 @@ export class UserOrmEntity {
   })
   refreshTokenExpiresAt: Date | null;
 
-  @OneToMany(
-    () => ProjectOrmEntity,
-    (project) => project.user,
-  )
+  @OneToMany(() => ProjectOrmEntity, (project) => project.user)
   projects: ProjectOrmEntity[];
 }

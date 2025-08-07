@@ -7,8 +7,6 @@
     "start": "npm run build && node dist/server/src/main.js",
     "start:prod": "node dist/server/src/main.js",
     "build": "npx nest build",
-    "lint": "npx biome check .",
-    "lint:fix": "npx biome format . --write",
     "typeorm": "../node_modules/.bin/ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "migration:generate": "../node_modules/.bin/ts-node -r tsconfig-paths/register --project tsconfig.json ./node_modules/typeorm/cli.js migration:generate server/src/database/migrations -d server/src/config/data-source.ts",
     "migration:create": "../node_modules/.bin/ts-node -r tsconfig-paths/register --project tsconfig.json ./node_modules/typeorm/cli.js migration:create server/src/database/migrations -d server/src/config/data-source.ts",

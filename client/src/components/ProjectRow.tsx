@@ -1,5 +1,3 @@
-import React from "react";
-
 interface ProjectData {
   id: string;
   repoPath: { value: string };
@@ -34,8 +32,12 @@ export default function ProjectRow({ project, onDelete, onUpdate }: Props) {
       <td>{project.stats.issues}</td>
       <td>{new Date(project.createdAt * 1000).toUTCString()}</td>
       <td>
-        <button onClick={() => onUpdate(project.id)}>Update</button>
-        <button onClick={() => onDelete(project.id)}>Delete</button>
+        <button type="button" onClick={() => onUpdate(project.id)}>
+          Update
+        </button>
+        <button type="button" onClick={() => onDelete(project.id)}>
+          Delete
+        </button>
       </td>
     </tr>
   );

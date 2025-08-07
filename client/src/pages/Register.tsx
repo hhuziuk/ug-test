@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
@@ -10,8 +10,12 @@ export default function Register() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await register(email, password);
-    navigate("/projects");
+    try {
+      await register(email, password);
+      navigate("/projects");
+    } catch (error) {
+      console.error("Registration failed");
+    }
   };
 
   return (

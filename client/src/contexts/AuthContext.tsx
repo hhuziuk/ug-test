@@ -1,6 +1,6 @@
-import React, { createContext, useState, ReactNode, useEffect } from "react";
-import api from "../api";
 import axios from "axios";
+import { createContext, ReactNode, useEffect, useState } from "react";
+import api from "../api";
 
 interface AuthContextProps {
   token: string | null;
@@ -9,7 +9,12 @@ interface AuthContextProps {
   logout: () => void;
 }
 
-export const AuthContext = createContext<AuthContextProps>({} as any);
+export const AuthContext = createContext<AuthContextProps>({
+  token: null,
+  login: async () => {},
+  register: async () => {},
+  logout: () => {},
+});
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [token, setToken] = useState<string | null>(null);
@@ -19,7 +24,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setToken(storedToken);
-      api.defaults.headers.common["Authorization"] = `Bearer ${storedToken}`;
+      api.defaults.headers.common.Authorization = `Bearer ${storedToken}`;
     }
     setLoading(false);
   }, []);
@@ -30,7 +35,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const newAccessToken = res.data.accessToken;
 
       setToken(newAccessToken);
-      api.defaults.headers.common["Authorization"] = `Bearer ${newAccessToken}`;
+      api.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
       localStorage.setItem("token", newAccessToken);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
@@ -48,7 +53,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const newAccessToken = res.data.accessToken;
 
       setToken(newAccessToken);
-      api.defaults.headers.common["Authorization"] = `Bearer ${newAccessToken}`;
+      api.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
       localStorage.setItem("token", newAccessToken);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
@@ -63,7 +68,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const logout = () => {
     setToken(null);
     localStorage.removeItem("token");
-    delete api.defaults.headers.common["Authorization"];
+    delete api.defaults.headers.common.Authorization;
   };
 
   if (loading) {
